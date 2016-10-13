@@ -104,13 +104,14 @@
             ]
         }
     ];
-
+    
+    /* Handlebar js code*/
     var theTemplateScript = $("#expressions-template").html();
-    // Compile the template
     var theTemplate = Handlebars.compile(theTemplateScript);
     var theCompiledHtml = theTemplate(items);
     $('.slider-container').html(theCompiledHtml);
-
+    /* End Handlebar js code*/
+    
     $(".carousel-bg").hide("fast");
     $(".open").show("fast");
     $(".navbar-nav a").click(function (e) {
@@ -144,20 +145,14 @@
         ]
     });
     $(".item").click(function () {
-        //alert(info[0]['item'][0]['menu']);
         var directory = $(this).data("menu");
-        //alert(directory);
-        var text = '';
-        var index = $(this).data('index')
-        //alert(index);
+        var index = $(this).data('index');
         var menu = "<div class='port-container text-center'><ul>";
         for (var i = 0; i < info.length; i++) {
             if (info[i]['name'] == directory) {
-                //console.log(info[i]['name']);
                 var menu_list = info[i]['item'][index]['menu'];
                 var image = info[i]['item'][index]['image'];
-                for (var m = 0; m < menu_list.length; m++) {
-                    //console.log(menu_list[m]);
+                for (var m = 0; m < menu_list.length; m++){
                     menu += "<li data-info='" + i + "' data-item='" + index + "'><a href='#'>" + menu_list[m] + "</a></li>";
                 }
                 menu += "</ul></div><div class='big-image'><img src='images/" + image + "' class='img-responsive'></div>";
@@ -165,16 +160,6 @@
                 break;
             }
         }
-        //$(".port-container").append(text);
-        //var menu = $(this).data('menu').split(',');
-//                    $.each(menu, function (i, l) {
-//                        alert("Index #" + i + ": " + l);
-//                    });
-        //alert(menu[0]);
-//                    $(".current").removeClass("current");
-//                    $big_image=$(this).attr("data-image");
-//                    $(".image-cont").html("<img src='"+$big_image+"' class='image-responsive'>");
-//                    $(this).addClass("current");
     });
 
     $(document).on("click", ".port-container ul li", function (e) {
@@ -182,7 +167,6 @@
         var index = $(this).index();
         var inf = $(this).data("info");
         var item = $(this).data("item");
-        //alert(inf);
         var image = "<img src='images/" + info[inf]['item'][item]['images'][index] + "' class='img-responsive'>";
         $(".big-image").html(image);
     });
